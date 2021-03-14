@@ -14,7 +14,7 @@
 
     function parse($node) {
         if (preg_match('/(.*?)<time startYear="(\d+)" startMonth="(\d+)" startDay="(\d+)">.*?<\/time>(.*?)/', $node->getName(), $m)) {
-            $date = $m[2].$m[3].$m[4];
+            $date = $m[2] . str_pad($m[3],'0',STR_PAD_LEFT) . str_pad($m[4],'0',STR_PAD_LEFT);
             $GLOBALS['cal'] .= "BEGIN:VEVENT\r\nUID:{$node->getID()}\r\nDTSTART;VALUE=DATE:$date\r\nDTEND;VALUE=DATE:$date\r\nSUMMARY:{$m[1]}{$m[5]}\r\nDESCRIPTION:{$node->getDescription()}\r\nEND:VEVENT\r\n";
         }
         foreach ($node->getSublists() as $subnode)
