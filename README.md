@@ -1,7 +1,3 @@
-Daily backup of workflowy data. It keeps:
-- all copies for a month
-- three copies per month between one and six months
-- one copy per month older than six months 
+Retrieve a calendar from Workflowy using [dates](https://blog.workflowy.com/2019/12/30/dates-in-workflowy-try-it-out/).
 
-`docker run -d -v BACKUP_PATH:/app/data/ -e USERNAME=WF_USERNAME -e PASSWORD=WF_PASSWORD --restart unless-stopped ivlivs/workflowy-backup`  
-`docker service create --mount type=bind,src=BACKUP_PATH,dst=/app/data -e USERNAME=WF_USERNAME -e PASSWORD=WF_PASSWORD ivlivs/workflowy-backup`
+USERNAME and PASSWORD are to be provided as environment variables.
