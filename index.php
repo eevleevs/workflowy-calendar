@@ -17,8 +17,7 @@
                 .str_pad($m[3],2,'0',STR_PAD_LEFT)
                 .str_pad($m[4],2,'0',STR_PAD_LEFT);
             $timestamp = (new DateTime("$m[2]-$m[3]-$m[4]"))->getTimestamp();
-            $GLOBALS['cal'] .= "
-                BEGIN:VEVENT
+            $GLOBALS['cal'] .= "BEGIN:VEVENT
                 UID:{$node->getID()}
                 DTSTAMP:$timestamp
                 DTSTART;VALUE=DATE:$date
