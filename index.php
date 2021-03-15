@@ -19,10 +19,9 @@ PRODID:wfcal
             $date = $m[2]
                 .str_pad($m[3],2,'0',STR_PAD_LEFT)
                 .str_pad($m[4],2,'0',STR_PAD_LEFT);
-            $timestamp = (new DateTime("$m[2]-$m[3]-$m[4]"))->getTimestamp();
             $GLOBALS['cal'] .= "BEGIN:VEVENT
 UID:{$node->getID()}
-DTSTAMP:$timestamp
+DTSTAMP:$date
 DTSTART;VALUE=DATE:$date
 DTEND;VALUE=DATE:$date
 SUMMARY:{$m[1]}{$m[5]}
