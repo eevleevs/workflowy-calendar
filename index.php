@@ -1,7 +1,7 @@
 <?php
     require_once 'workflowy-php/src/autoload.php';
     error_reporting(E_ALL & ~E_NOTICE);
-    header('Content-type: text/calendar');
+    header('Content-Type: text/calendar');
 
     use WorkFlowyPHP\WorkFlowy;
     use WorkFlowyPHP\WorkFlowyList;
