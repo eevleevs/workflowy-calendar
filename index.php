@@ -8,8 +8,7 @@
     use WorkFlowyPHP\WorkFlowyException;
 
     $session_id = WorkFlowy::login($_ENV['USERNAME'], $_ENV['PASSWORD']);
-    $list_request = new WorkFlowyList($session_id);
-    $list = $list_request->getList();
+    $list = (new WorkFlowyList($session_id))->getList();
     $cal = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:wfcal\r\n";
 
     function parse($node) {
@@ -17,7 +16,17 @@
             $date = $m[2]
                 .str_pad($m[3],2,'0',STR_PAD_LEFT)
                 .str_pad($m[4],2,'0',STR_PAD_LEFT);
-            $GLOBALS['cal'] .= "BEGIN:VEVENT\r\nUID:{$node->getID()}\r\nDTSTART;VALUE=DATE:$date\r\nDTEND;VALUE=DATE:$date\r\nSUMMARY:{$m[1]}{$m[5]}\r\nDESCRIPTION:{$node->getDescription()}\r\nEND:VEVENT\r\n";
+            $timestamp = (new DateTime("$m[2]-$m[3]-$m[4]"))->getTimestamp();
+            $GLOBALS['cal'] .= "
+                BEGIN:VEVENT
+                UID:{$node->getID()}
+                DTSTAMP:$timestamp
+                DTSTART;VALUE=DATE:$date
+                DTEND;VALUE=DATE:$date
+                SUMMARY:{$m[1]}{$m[5]}
+                DESCRIPTION:{$node->getDescription()}
+                END:VEVENT
+            ";
         }
         foreach ($node->getSublists() as $subnode)
             parse($subnode);
