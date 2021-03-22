@@ -25,7 +25,7 @@ DTSTAMP:{$date}T000000
 DTSTART;VALUE=DATE:$date
 DTEND;VALUE=DATE:$date
 SUMMARY:{$m[1]}{$m[5]}
-DESCRIPTION:{$node->getDescription()}
+DESCRIPTION:https://workflowy.com/#/{$node->getID()}\n\n{$node->getDescription()}
 END:VEVENT
 ";
         }
