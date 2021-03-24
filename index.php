@@ -9,6 +9,7 @@
 
     $session_id = WorkFlowy::login($_ENV['USERNAME'], $_ENV['PASSWORD']);
     $list = (new WorkFlowyList($session_id))->getList();
+    $now = date("Ymd\THis");
     $cal = "BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:wfcal
@@ -19,7 +20,6 @@ PRODID:wfcal
             $date = $m[2]
                 .str_pad($m[3],2,'0',STR_PAD_LEFT)
                 .str_pad($m[4],2,'0',STR_PAD_LEFT);
-            $now = date("Ymd\THis");
             $GLOBALS['cal'] .= "BEGIN:VEVENT
 UID:{$node->getID()}
 DTSTAMP:$now
