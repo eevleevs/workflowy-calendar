@@ -22,7 +22,7 @@ PRODID:wfcal
                 .str_pad($m[4],2,'0',STR_PAD_LEFT);
             $GLOBALS['cal'] .= "BEGIN:VEVENT
 UID:{$node->getID()}
-DTSTAMP:$now
+DTSTAMP:{$GLOBALS['now']}
 DTSTART;VALUE=DATE:$date
 DTEND;VALUE=DATE:$date
 SUMMARY:{$m[1]}{$m[5]}
